@@ -1,1 +1,49 @@
 // TODO
+
+.home {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post {
+  margin-top: 5rem;
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 3.3rem;
+    margin-bottom: 1rem;
+  }
+  > p {
+    color: rgba(215, 215, 215, 1);
+    line-height: 2.1rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  > div {
+    display: flex;
+
+    span,
+    time {
+      color: rgba(187, 187, 187, 1);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      margin-right: 2.5rem;
+
+      img {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.button {
+  color: rgba(255, 87, 178, 1);
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+  margin-top: 6rem;
+}
