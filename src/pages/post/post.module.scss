@@ -1,1 +1,46 @@
 // TODO
+.post {
+  &__banner {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  h1 {
+    font-size: 4.8rem;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+
+  article {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__info {
+    display: flex;
+    margin-bottom: 6rem;
+
+    span {
+      color: rgba(187, 187, 187, 1);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      margin-right: 2.5rem;
+    }
+  }
+
+  &__content {
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+    }
+    p {
+      color: rgba(215, 215, 215, 1);
+      line-height: 3rem;
+      font-size: 1.8rem;
+      text-align: justify;
+    }
+  }
+}
