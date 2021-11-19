@@ -34,13 +34,19 @@
   &__content {
     h2 {
       font-size: 2.8rem;
-      margin-bottom: 3rem;
+      margin: 3rem 0;
     }
-    p {
+    p,
+    li {
       color: rgba(215, 215, 215, 1);
       line-height: 3rem;
       font-size: 1.8rem;
       text-align: justify;
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: #ff57b2;
   }
 }

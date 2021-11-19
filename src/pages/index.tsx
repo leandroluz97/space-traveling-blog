@@ -28,12 +28,14 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home(props: PostPagination) {
+export default function Home(props: HomeProps) {
   // TODO
 
+  const { next_page, results } = props.postsPagination;
+
   const [postPagination, setPostPagination] = useState<PostPagination>({
-    next_page: props.next_page,
-    results: props.results,
+    next_page: next_page,
+    results: results,
   });
 
   const getMorePost = async () => {
@@ -115,10 +117,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // TODO
 
+  const postsPagination: PostPagination = {
+    next_page: postsResponse.next_page,
+    results: posts,
+  };
+
   return {
     props: {
-      next_page: postsResponse.next_page,
-      results: posts,
-    },
+      postsPagination,
+    } as HomeProps,
   };
 };

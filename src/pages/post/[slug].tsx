@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Prismic from '@prismicio/client';
+import { useRouter } from 'next/router';
 import { RichText } from 'prismic-dom';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 
@@ -34,19 +35,24 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   // TODO
+  const router = useRouter();
+
   //console.log(JSON.stringify(post, null, 2));
 
   const minutes = post.data.content
     .reduce((a, t) => {
       a = t.body;
+
       return a;
     }, [])
-    .join('')
+    .toString()
     .split(' ').length;
 
   const minutesToRead = Math.round(minutes / 200);
 
-  console.log(minutesToRead);
+  if (router.isFallback) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <section className={styles.post}>
@@ -58,8 +64,7 @@ export default function Post({ post }: PostProps) {
         <h1>{post.data.title}</h1>
         <div className={styles.post__info}>
           <span>
-            <FiCalendar /> &nbsp;
-            {post.first_publication_date}
+            <FiCalendar /> &nbsp;{post.first_publication_date}
           </span>
           <span>
             <FiUser /> &nbsp;
@@ -73,11 +78,7 @@ export default function Post({ post }: PostProps) {
         {post.data.content.map((p, i) => (
           <section key={i} className={styles.post__content}>
             <h2>{p.heading}</h2>
-            <div>
-              {p.body.map((text, i) => (
-                <p key={i}>{text}</p>
-              ))}
-            </div>
+            <div dangerouslySetInnerHTML={{ __html: p.body.toString() }}></div>
           </section>
         ))}
       </article>
@@ -106,7 +107,7 @@ export const getStaticProps = async ({ params }) => {
   const prismic = getPrismicClient();
   const response = await prismic.getByUID('posts', String(slug), {});
 
-  const post = {
+  const post: Post = {
     first_publication_date: format(
       new Date(response.first_publication_date.toString()),
       'dd MMM yyyy',
@@ -122,7 +123,7 @@ export const getStaticProps = async ({ params }) => {
       author: response.data.author,
       content: response.data.content.map(item => ({
         heading: item.heading,
-        body: item.body.map(b => b.text),
+        body: RichText.asHtml(item.body),
       })),
     },
   };

@@ -9,7 +9,7 @@ export default function Header() {
       <div>
         <Link href="/">
           <a>
-            <img src="/images/logo.svg" alt="space traveling" />
+            <img src="/images/logo.svg" alt="logo" />
           </a>
         </Link>
       </div>
