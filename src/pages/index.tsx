@@ -42,6 +42,8 @@ export default function Home(props: HomeProps) {
     const fetchPost = await fetch(postPagination.next_page);
     const nextPostPage = await fetchPost.json();
 
+    console.log(nextPostPage);
+
     let posts: Post[] = nextPostPage.results.map(post => ({
       uid: post.uid,
       first_publication_date: format(
@@ -75,10 +77,14 @@ export default function Home(props: HomeProps) {
           </h1>
           <p>{post.data.subtitle}</p>
           <div>
-            <time>
+            <span>
               <img src="/images/calendar.svg" alt="calendar" />
-              {post.first_publication_date}
-            </time>
+              <span>
+                {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
+                  locale: ptBR,
+                })}
+              </span>
+            </span>
             <span>
               <img src="/images/user.svg" alt="calendar" />
               {post.data.author}
@@ -99,15 +105,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query('', { pageSize: 1 });
 
+  //console.log(JSON.stringify(postsResponse, null, 2));
+
   let posts: Post[] = postsResponse.results.map(post => ({
     uid: post.uid,
-    first_publication_date: format(
-      new Date(post.first_publication_date.toString()),
-      'dd MMM yyyy',
-      {
-        locale: ptBR,
-      }
-    ),
+    first_publication_date: post.first_publication_date,
     data: {
       title: post.data.title,
       subtitle: post.data.subtitle,

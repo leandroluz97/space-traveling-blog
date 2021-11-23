@@ -33,22 +33,22 @@ const mockedQueryReturn = {
   next_page: 'link',
   results: [
     {
-      uid: 'como-utilizar-hooks',
-      first_publication_date: '2021-03-15T19:25:28+0000',
-      data: {
-        title: 'Como utilizar Hooks',
-        subtitle: 'Pensando em sincronização em vez de ciclos de vida',
-        author: 'Joseph Oliveira',
-      },
-    },
-    {
       uid: 'criando-um-app-cra-do-zero',
-      first_publication_date: '2021-03-25T19:27:35+0000',
+      first_publication_date: '2021-11-15T23:14:18+0000',
       data: {
         title: 'Criando um app CRA do zero',
         subtitle:
           'Tudo sobre como criar a sua primeira aplicação utilizando Create React App',
         author: 'Danilo Vieira',
+      },
+    },
+    {
+      uid: 'como-utilizar-hooks',
+      first_publication_date: '2021-11-15T22:57:34+0000',
+      data: {
+        title: 'Como utilizar Hooks',
+        subtitle: 'Pensando em sincronização em vez de ciclos de vida',
+        author: 'Joseph Oliveira',
       },
     },
   ],
@@ -92,7 +92,7 @@ describe('Home', () => {
             results: [
               {
                 uid: 'criando-um-app-cra-do-zero',
-                first_publication_date: '2021-03-25T19:27:35+0000',
+                first_publication_date: '2021-11-15T23:14:18+0000',
                 data: {
                   title: 'Criando um app CRA do zero',
                   subtitle:
@@ -133,14 +133,14 @@ describe('Home', () => {
 
     screen.getByText('Como utilizar Hooks');
     screen.getByText('Pensando em sincronização em vez de ciclos de vida');
-    screen.getByText('15 mar 2021');
+    screen.getByText('15 nov 2021');
     screen.getByText('Joseph Oliveira');
 
     screen.getByText('Criando um app CRA do zero');
     screen.getByText(
       'Tudo sobre como criar a sua primeira aplicação utilizando Create React App'
     );
-    screen.getByText('15 mar 2021');
+    screen.getByText('15 nov 2021');
     screen.getByText('Danilo Vieira');
   });
 
@@ -176,7 +176,7 @@ describe('Home', () => {
     postsPagination.results = [
       {
         uid: 'como-utilizar-hooks',
-        first_publication_date: '2021-03-15T19:25:28+0000',
+        first_publication_date: '2021-11-15T22:57:34+0000',
         data: {
           title: 'Como utilizar Hooks',
           subtitle: 'Pensando em sincronização em vez de ciclos de vida',
